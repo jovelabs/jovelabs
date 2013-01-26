@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+require 'pry'
+require 'jovelabs'
+
+##
+#
+# Welcome to the Jove Labs pry console!
+#
+##
+binding.pry
