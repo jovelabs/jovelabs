@@ -28,9 +28,9 @@ require "jove_labs/support"
 require "jove_labs/version"
 
 module JoveLabs
-  extend(JoveLabs::Support)
-
   class Error < StandardError; end
+
+  extend(JoveLabs::Support)
 
   autoload :Nexus, "jove_labs/nexus"
 
@@ -41,4 +41,7 @@ module JoveLabs
 
   autoload :Provider, "jove_labs/provider"
   autoload :Providers, "jove_labs/providers"
+
+  labfile = find_file("Labfile")
+  nexus = Nexus.load(labfile)
 end

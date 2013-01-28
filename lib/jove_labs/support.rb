@@ -21,8 +21,22 @@
 module JoveLabs
   module Support
 
+    module Exceptions
+      class CouldNotFind < StandardError; end
+    end
+
     def logger
       $logger ||= ZTK::Logger.new(STDOUT)
+    end
+
+    def find_file(*args)
+      pwd = Dir.pwd.split(File::SEPARATOR)
+      (pwd.length - 1).downto(0) do |i|
+        candidate = File.join(pwd[0..i], args)
+        File.exists?(candidate) and return File.expand_path(candidate)
+      end
+
+      raise Exceptions::CouldNotFind, "Could not locate '#{File.join(args)}'!"
     end
 
   end
